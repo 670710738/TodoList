@@ -1,6 +1,6 @@
 <%= form_with model: task, local: true do |form| %>
   <% if task.errors.any? %>
-    <div>
+    <div class="flash">
       <h2><%= pluralize(task.errors.count, "error") %> prevented this task from being saved:</h2>
       <ul>
         <% task.errors.full_messages.each do |message| %>
@@ -10,19 +10,19 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="form-field">
     <%= form.label :title %>
     <%= form.text_field :title, placeholder: "What needs to be done?" %>
   </div>
 
   <% if task.persisted? %>
-    <div>
+    <div class="form-field">
       <%= form.label :completed %>
       <%= form.check_box :completed %>
     </div>
   <% end %>
 
-  <div>
+  <div class="actions">
     <%= form.submit task.persisted? ? "Update Task" : "Add Task" %>
   </div>
 <% end %>

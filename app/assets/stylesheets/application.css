@@ -8,3 +8,240 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+:root {
+	color-scheme: light;
+	--bg: #f5f1ea;
+	--panel: #ffffff;
+	--panel-strong: #f0e7db;
+	--text: #1f1b16;
+	--muted: #6d6257;
+	--border: #d8c9b6;
+	--accent: #8b5e34;
+	--accent-hover: #734b28;
+	--danger: #a8433a;
+	--shadow: 0 16px 40px rgba(52, 38, 24, 0.12);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	background:
+		radial-gradient(circle at top left, rgba(139, 94, 52, 0.14), transparent 30%),
+		radial-gradient(circle at top right, rgba(216, 201, 182, 0.45), transparent 28%),
+		var(--bg);
+	color: var(--text);
+	font-family: "Georgia", "Times New Roman", serif;
+}
+
+a {
+	color: var(--accent);
+}
+
+a:hover {
+	color: var(--accent-hover);
+}
+
+.page-shell {
+	width: min(920px, calc(100% - 32px));
+	margin: 32px auto;
+	padding: 28px;
+}
+
+.hero {
+	display: grid;
+	gap: 18px;
+	margin-bottom: 28px;
+	padding: 28px;
+	background: rgba(255, 255, 255, 0.82);
+	border: 1px solid rgba(216, 201, 182, 0.7);
+	border-radius: 24px;
+	box-shadow: var(--shadow);
+	backdrop-filter: blur(8px);
+}
+
+.eyebrow {
+	margin: 0;
+	color: var(--muted);
+	font-family: Arial, sans-serif;
+	font-size: 0.82rem;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+h1,
+h2 {
+	margin: 0;
+	line-height: 1;
+}
+
+h1 {
+	font-size: clamp(2.4rem, 5vw, 4rem);
+}
+
+h2 {
+	font-size: 1.4rem;
+}
+
+.task-form,
+.tasks-list {
+	background: var(--panel);
+	border: 1px solid var(--border);
+	border-radius: 20px;
+	box-shadow: var(--shadow);
+}
+
+.task-form {
+	padding: 22px;
+	margin-bottom: 24px;
+}
+
+.form-field {
+	display: grid;
+	gap: 10px;
+	margin-bottom: 16px;
+}
+
+.form-field label {
+	font-family: Arial, sans-serif;
+	font-size: 0.95rem;
+	font-weight: 700;
+}
+
+.form-field input[type="text"] {
+	width: 100%;
+	padding: 14px 16px;
+	font-size: 1rem;
+	border: 1px solid var(--border);
+	border-radius: 14px;
+	background: #fffdf9;
+	color: var(--text);
+}
+
+.form-field input[type="checkbox"] {
+	width: 18px;
+	height: 18px;
+	accent-color: var(--accent);
+}
+
+.actions {
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+button,
+input[type="submit"],
+.button_to button {
+	border: 0;
+	border-radius: 999px;
+	padding: 12px 18px;
+	background: var(--accent);
+	color: #fff;
+	font: 700 0.95rem/1 Arial, sans-serif;
+	cursor: pointer;
+	transition: transform 120ms ease, background 120ms ease, box-shadow 120ms ease;
+}
+
+button:hover,
+input[type="submit"]:hover,
+.button_to button:hover {
+	background: var(--accent-hover);
+	box-shadow: 0 10px 24px rgba(139, 94, 52, 0.18);
+	transform: translateY(-1px);
+}
+
+.tasks-list {
+	padding: 20px 22px;
+}
+
+.task-items {
+	list-style: none;
+	padding: 0;
+	margin: 18px 0 0;
+	display: grid;
+	gap: 14px;
+}
+
+.task-item {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 16px 18px;
+	border: 1px solid var(--border);
+	border-radius: 18px;
+	background: var(--panel-strong);
+}
+
+.task-main {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.task-title {
+	font-size: 1.05rem;
+}
+
+.task-title.is-completed {
+	color: var(--muted);
+	text-decoration: line-through;
+}
+
+.task-actions {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+.task-actions .button_to button {
+	background: var(--danger);
+}
+
+.task-actions .button_to button:hover {
+	background: #8e332c;
+}
+
+.flash {
+	margin-bottom: 18px;
+	padding: 12px 16px;
+	border-radius: 14px;
+	background: #fff6df;
+	border: 1px solid #eed59d;
+	color: #745b1f;
+	font-family: Arial, sans-serif;
+}
+
+.empty-state {
+	margin-top: 18px;
+	color: var(--muted);
+	font-family: Arial, sans-serif;
+}
+
+@media (max-width: 640px) {
+	.page-shell {
+		width: min(100% - 20px, 920px);
+		margin: 10px auto;
+		padding: 12px;
+	}
+
+	.hero,
+	.task-form,
+	.tasks-list {
+		border-radius: 18px;
+	}
+
+	.task-item {
+		flex-direction: column;
+	}
+
+	.task-actions {
+		width: 100%;
+	}
+}

@@ -1,27 +1,38 @@
-<h1>Todo List</h1>
+<section class="hero">
+  <p class="eyebrow">Daily planning</p>
+  <h1>Todo List</h1>
+  <p class="empty-state">Keep tasks clear, simple, and visible in one place.</p>
+</section>
 
-<%= render "form", task: @task %>
+<section class="task-form">
+  <%= render "form", task: @task %>
+</section>
 
-<h2>All Tasks</h2>
+<section class="tasks-list">
+  <h2>All Tasks</h2>
 
-<% if @tasks.any? %>
-  <ul>
-    <% @tasks.each do |task| %>
-      <li>
-        <%= form_with model: task, local: true do |form| %>
-          <%= form.check_box :completed, checked: task.completed, onchange: "this.form.requestSubmit();" %>
-          <% if task.completed? %>
-            <s><%= task.title %></s>
-          <% else %>
-            <%= task.title %>
-          <% end %>
-        <% end %>
+  <% if @tasks.any? %>
+    <ul class="task-items">
+      <% @tasks.each do |task| %>
+        <li class="task-item">
+          <div class="task-main">
+            <%= form_with model: task, local: true do |form| %>
+              <%= form.check_box :completed, checked: task.completed, onchange: "this.form.requestSubmit();" %>
+            <% end %>
 
-        <%= link_to "Edit", edit_task_path(task) %>
-        <%= button_to "Delete", task_path(task), method: :delete, form: { data: { turbo_confirm: "Delete this task?" } } %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No tasks yet.</p>
-<% end %>
+            <span class="task-title <%= 'is-completed' if task.completed? %>">
+              <%= task.title %>
+            </span>
+          </div>
+
+          <div class="task-actions">
+            <%= link_to "Edit", edit_task_path(task) %>
+            <%= button_to "Delete", task_path(task), method: :delete, form: { data: { turbo_confirm: "Delete this task?" } } %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="empty-state">No tasks yet.</p>
+  <% end %>
+</section>

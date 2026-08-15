@@ -24,14 +24,16 @@
   </head>
 
   <body>
-    <% if notice.present? %>
-      <p><%= notice %></p>
-    <% end %>
+    <div class="page-shell">
+      <% if notice.present? %>
+        <p class="flash"><%= notice %></p>
+      <% end %>
 
-    <% if alert.present? %>
-      <p><%= alert %></p>
-    <% end %>
+      <% if alert.present? %>
+        <p class="flash"><%= alert %></p>
+      <% end %>
 
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>
