@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "tasks_section" do %>
+  <%= render "tasks_section", tasks: @tasks, status: @status %>
+<% end %>
+
+<%= turbo_stream.replace "task_form" do %>
+  <%= render "task_form_section", task: @task, status: @status %>
+<% end %>

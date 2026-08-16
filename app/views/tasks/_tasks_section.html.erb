@@ -1,0 +1,29 @@
+<%= turbo_frame_tag "tasks_section" do %>
+  <section class="tasks-list">
+    <h2>All Tasks</h2>
+
+    <div class="status-filters">
+      <%= link_to tasks_path, class: ["filter-link", (status.blank? ? "is-active" : nil)], data: { turbo_frame: "tasks_section" } do %>
+        All (<span id="all_count"><%= Task.count %></span>)
+      <% end %>
+
+      <%= link_to tasks_path(status: "pending"), class: ["filter-link", (status == "pending" ? "is-active" : nil)], data: { turbo_frame: "tasks_section" } do %>
+        Pending (<span id="pending_count"><%= Task.pending.count %></span>)
+      <% end %>
+
+      <%= link_to tasks_path(status: "completed"), class: ["filter-link", (status == "completed" ? "is-active" : nil)], data: { turbo_frame: "tasks_section" } do %>
+        Completed (<span id="completed_count"><%= Task.completed.count %></span>)
+      <% end %>
+    </div>
+
+    <ul id="task_items" class="task-items">
+      <% tasks.each do |task| %>
+        <%= render "task", task: task, status: status %>
+      <% end %>
+    </ul>
+
+    <% if tasks.empty? %>
+      <p class="empty-state">No tasks yet.</p>
+    <% end %>
+  </section>
+<% end %>
